@@ -6,7 +6,7 @@
     <h2>Admin </h2>
     <br>
     <div class="row justify-content-center mt-3">
-        <div class="card col-5">
+        <div class="card col-4">
             <div class="card-header">
                 Create Managers
             </div>
@@ -17,8 +17,8 @@
                 <a href="#" class="btn btn-primary float-end">Go somewhere</a>
             </div>
         </div>
-        <div class="col-1"></div>
-        <div class="card col-5">
+        <div class="col-2"></div>
+        <div class="card col-4">
             <div class="card-header">
                 Create Loan Officers
             </div>
