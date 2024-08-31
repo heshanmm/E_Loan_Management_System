@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Auth;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,7 +22,7 @@ Route::get('admin/manager_list', [ManagerController::class, 'manager_list'])->na
 Route::get('admin/manager_create', [ManagerController::class, 'manager_create']);
 Route::post('admin/manager_save', [ManagerController::class, 'manager_save'])->name('manager_save');
 Route::get('admin/manager_view', [ManagerController::class, 'manager_view'])->name('manager_view');
-Route::post('/admin/manager_update/{email}', [ManagerController::class, 'manager_update'])->name('manager_update');
+Route::post('/admin/manager_update/{user}', [ManagerController::class, 'manager_update'])->name('manager_update');
 Route::delete('/admin/manager_delete/{email}', [ManagerController::class, 'destroy'])->name('manager_delete');
 Route::get('/admin/manager_edit/{email}', [ManagerController::class, 'edit'])->name('manager_edit');
 

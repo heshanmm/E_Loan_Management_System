@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use PharIo\Manifest\Email;
 
 class ManagerController extends Controller
 {
@@ -54,26 +55,45 @@ class ManagerController extends Controller
         return view('admin.manager_edit', compact('user'));
     }
 
-    public function manager_update(Request $request, $email)
+
+
+
+
+    public function manager_update(int $email, Request $request)
     {
-        $user = User::where('email', $email)->firstOrFail();
 
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
 
-        if ($request->filled('password')) {
-            $validatedData['password'] = bcrypt($request->password);
-        } else {
-            unset($validatedData['password']);
-        }
+        $manager = User::findOrFail($email);
 
-        $user->update($validatedData);
-
-        return redirect()->route('manager_list')->with('success', 'User updated successfully');
+        $manager->name = $validatedData['name'];
+        $manager->email = $validatedData['email'];
+        $manager->save();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function destroy($email)
     {
