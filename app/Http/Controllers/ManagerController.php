@@ -8,10 +8,7 @@ use PharIo\Manifest\Email;
 
 class ManagerController extends Controller
 {
-    public function loanofficer_form()
-    {
-        return view('admin.loanofficer_form');
-    }
+    
 
     public function manager_form()
     {
@@ -49,7 +46,7 @@ class ManagerController extends Controller
         return view('admin.manager_view');
     }
 
-    public function edit($email)
+    public function manager_edit($email)
     {
         $user = User::where('email', $email)->firstOrFail();
         return view('admin.manager_edit', compact('user'));
@@ -59,7 +56,7 @@ class ManagerController extends Controller
 
 
 
-    public function manager_update(int $email, Request $request)
+    public function manager_update(string $email, Request $request)
     {
 
         $validatedData = $request->validate([
@@ -80,22 +77,7 @@ class ManagerController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function destroy($email)
+    public function manager_delete($email)
     {
         $user = User::where('email', $email)->firstOrFail();
         $user->delete();

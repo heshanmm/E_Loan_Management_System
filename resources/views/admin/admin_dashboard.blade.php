@@ -44,7 +44,7 @@
             <div class="row justify-content-center mt-5">
                 <div class="card col-4" style="background-color: rgb(208, 232, 255);">
                     <div class="card-header">
-                        View Users
+                        View managers
                     </div>
                     <br><br>
                     <div class="card-body">
@@ -55,13 +55,12 @@
                 <div class="col-1"></div>
                 <div class="card col-4" style="background-color: rgb(208, 232, 255);">
                     <div class="card-header">
-                        Featured
+                        loan Officer
                     </div>
                     <br>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary float-end">Go somewhere</a>
+                        <p class="card-text">view loan officers</p>
+                        <a href="{{ url('admin/loanofficer_list') }}" class="btn btn-primary float-end">view</a>
                     </div>
                 </div>
             </div>

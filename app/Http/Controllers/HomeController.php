@@ -22,4 +22,10 @@ class HomeController extends Controller
             return view('loanofficer/loanofficer_dashboard');
         }
     }
+
+
+    public function emi_calculator_view()
+    {
+        return view('loanofficer.emi_calculator');
+    }
 }

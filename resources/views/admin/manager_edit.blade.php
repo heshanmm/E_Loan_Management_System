@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Update Manager') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('manager_update', $user->email) }}">
+                        <form method="GET" action="{{ route('manager_update', $user->email) }}">
                             @csrf
 
                             <div class="row mb-3">
