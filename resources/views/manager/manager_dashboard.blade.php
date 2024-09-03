@@ -1,63 +1,58 @@
 <body style="background-color: rgb(206, 228, 255);">
     @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <h2>Admin </h2>
-    <br>
-    <div class="row justify-content-center mt-3">
-        <div class="card col-4">
-            <div class="card-header">
-                Create Managers
-            </div>
-            <br>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary float-end">Go somewhere</a>
-            </div>
-        </div>
-        <div class="col-2"></div>
-        <div class="card col-4">
-            <div class="card-header">
-                Create Loan Officers
-            </div>
-            <br>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary float-end">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row justify-content-center mt-5">
-        <div class="card col-5">
-            <div class="card-header">
-                View Users 
-            </div>
-            <br><br>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary float-end">Go somewhere</a>
-            </div>
-        </div>
-        <div class="col-1"></div>
-        <div class="card col-5">
-            <div class="card-header">
-                Featured
-            </div>
-            <br>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary float-end">Go somewhere</a>
+    @section('content')
+        <div class="container" style="background-color: rgb(206, 228, 255);">
+            <h2>Loan Officer</h2>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-header">{{ __('Customer Registration Form') }}</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h6>Customer Registration</h6>
+                                    </div>
+                                    <div class="col-5"> <a href="{{ url('customer_form') }}"
+                                            class="btn btn-primary float-end">Proceed</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h6>Trial Calculation</h6>
+                                    </div>
+                                    <div class="col-5"> <a href="{{ url('emi-calculator') }}"
+                                            class="btn btn-primary float-end">Proceed</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h6>Registerd Customers</h6>
+                                    </div>
+                                    <div class="col-5"> <a href="{{ url('customer_list') }}"
+                                            class="btn btn-primary float-end">Proceed</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h6>Apply for a loan</h6>
+                                    </div>
+                                    <div class="col-5"> <a href="{{ url('loanofficer/apply_loan') }}"
+                                            class="btn btn-primary float-end">Proceed</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    @endsection
 
 </body>
+
 </html>

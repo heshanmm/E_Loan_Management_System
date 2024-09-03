@@ -23,7 +23,25 @@
                                     <div class="col-7">
                                         <h6>Trial Calculation</h6>
                                     </div>
-                                    <div class="col-5"> <a href="{{ url('emi') }}"
+                                    <div class="col-5"> <a href="{{ url('emi-calculator') }}"
+                                            class="btn btn-primary float-end">Proceed</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h6>Registerd Customers</h6>
+                                    </div>
+                                    <div class="col-5"> <a href="{{ url('customer_list') }}"
+                                            class="btn btn-primary float-end">Proceed</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h6>Apply for a loan</h6>
+                                    </div>
+                                    <div class="col-5"> <a href="{{ url('loanofficer/apply_loan') }}"
                                             class="btn btn-primary float-end">Proceed</a>
                                     </div>
                                 </div>

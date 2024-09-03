@@ -13,9 +13,7 @@
                 <div class="col-8">
                     <h2>Customers</h2>
                 </div>
-                <div class="col-4">
-                    <a href="loanofficer_dashboard" class="btn btn-info btn-sm">back</a>
-                </div>
+                
             </div>
 
             <table class="table">

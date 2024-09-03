@@ -1,29 +1,71 @@
 <?php
 
-// app/Http/Controllers/EMICalculatorController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EMICalculatorController extends Controller
+class EmiCalculatorController extends Controller
 {
-    public function calculate(Request $request)
+    public function index()
     {
-        $loanAmount = $request->input('loan_amount');
-        $annualInterestRate = $request->input('interest_rate');
-        $tenureMonths = $request->input('tenure');
+        return view('emi-calculator');
+    }
 
-        // Calculate EMI
-        $monthlyInterestRate = $annualInterestRate / (12 * 100);
-        $emi = ($loanAmount * $monthlyInterestRate * pow(1 + $monthlyInterestRate, $tenureMonths)) / (pow(1 + $monthlyInterestRate, $tenureMonths) - 1);
-        $emi = number_format($emi, 2);
+    public function calculateEmi(Request $request)
+    {
+        $request->validate([
+            'nic' => 'required|string',
+            'loan_amount' => 'required|numeric',
+            'interest_rate' => 'required|numeric',
+            'repayments' => 'required|numeric',
+        ]);
+
+        $loanAmount = $request->input('loan_amount');
+        $interestRate = $request->input('interest_rate') / 100 / 12;
+        $repayments = $request->input('repayments') * 12;
+
+        $emi = $this->calculate($loanAmount, $interestRate, $repayments);
+        $repaymentSchedule = $this->generateRepaymentSchedule($loanAmount, $interestRate, $repayments, $emi);
 
         return view('emi-calculator', [
-            'emi' => $emi,
-            'loan_amount' => $loanAmount,
-            'interest_rate' => $annualInterestRate,
-            'tenure' => $tenureMonths,
             'nic' => $request->input('nic'),
+            'loanAmount' => $loanAmount,
+            'interestRate' => $request->input('interest_rate'),
+            'repayments' => $request->input('repayments'),
+            'emi' => $emi,
+            'repaymentSchedule' => $repaymentSchedule,
         ]);
+    }
+
+    private function calculate($loanAmount, $interestRate, $repayments)
+    {
+        if ($interestRate === 0) {
+            return 0;
+        }
+
+        $emi = $loanAmount * $interestRate * pow(1 + $interestRate, $repayments) / (pow(1 + $interestRate, $repayments) - 1);
+        return round($emi, 2);
+    }
+
+    private function generateRepaymentSchedule($loanAmount, $interestRate, $repayments, $emi)
+    {
+        $repaymentSchedule = [];
+        $outstandingBalance = $loanAmount;
+
+        for ($i = 1; $i <= $repayments; $i++) {
+            $interest = $outstandingBalance * $interestRate;
+            $principal = $emi - $interest;
+            $outstandingBalance -= $principal;
+
+            $repaymentSchedule[] = [
+                'month' => $i,
+                'emi' => $emi,
+                'interest' => round($interest, 2),
+                'principal' => round($principal, 2),
+                'outstanding_balance' => round($outstandingBalance, 2),
+            ];
+        }
+
+        return $repaymentSchedule;
     }
 }
