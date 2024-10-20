@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h5>Personal Information</h5>
                         <hr class="mb-5 mt-4">
-                        <p><strong>Name:</strong> {{ $prospect->name }}</p>
+                        <p><strong>Name                       :</strong> {{ $prospect->name }}</p>
                         <p><strong>NIC No.:</strong> {{ $prospect->nic }}</p>
                         <p><strong>Account No.:</strong> {{ $prospect->account_no }}</p>
                         <p><strong>Citizenship:</strong> {{ $prospect->citizenship }}</p>

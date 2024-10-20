@@ -1,55 +1,37 @@
-<body style="background-color: rgb(206, 228, 255);">
+<head>
+    <style>
+        .card {
+            background-color: rgb(208, 232, 255);
+            margin-right: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: rgb(175, 203, 254);
+            transform: scale(1.05);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
     @extends('layouts.app')
 
     @section('content')
-        <div class="container" style="background-color: rgb(206, 228, 255);">
-            <h2>Loan Officer</h2>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-8">
-                        <div class="card">
-                            <div class="card-header">{{ __('Customer Registration Form') }}</div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <h6>Customer Registration</h6>
-                                    </div>
-                                    <div class="col-5"> <a href="{{ url('customer_form') }}"
-                                            class="btn btn-primary float-end">Proceed</a>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <h6>Trial Calculation</h6>
-                                    </div>
-                                    <div class="col-5"> <a href="{{ url('emi-calculator') }}"
-                                            class="btn btn-primary float-end">Proceed</a>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <h6>Registerd Customers</h6>
-                                    </div>
-                                    <div class="col-5"> <a href="{{ url('customer_list') }}"
-                                            class="btn btn-primary float-end">Proceed</a>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <h6>Apply for a loan</h6>
-                                    </div>
-                                    <div class="col-5"> <a href="{{ url('loanofficer/apply_loan') }}"
-                                            class="btn btn-primary float-end">Proceed</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="title-container">
+                <h2><b>Home</b></h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home / </a></li>
+                    </ol>
+                </nav>
             </div>
+        </div>
+
+        <div class="container text-center">
+            <h1><b>Welcome to Loanofficer Module</b></h1>
+            <img src="images/banner.png" class="img-fluid" alt="" style=""> 
         </div>
     @endsection
 

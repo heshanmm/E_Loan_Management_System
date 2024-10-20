@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prospect;
-
+use App\Models\LoanApplication;
 
 class LoanController extends Controller
 {
@@ -39,11 +39,16 @@ class LoanController extends Controller
         return redirect()->route('loan.show', ['id' => $prospect->id]);
     }
 
-    public function show($id)
+    public function loan_list()
     {
-        $prospect = Prospect::findOrFail($id);
-        return view('loan.show', compact('prospect'));
+        $loanApplications = LoanApplication::paginate(10);
+        return view('manager/loan_list', ['loanApplications' => $loanApplications]);
     }
 
-    
+
+    public function show($id)
+    {
+        $loanApplication = LoanApplication::findOrFail($id);
+        return view('manager/show', compact('loanApplication'));
+    }
 }

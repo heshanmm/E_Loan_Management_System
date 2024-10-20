@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use PharIo\Manifest\Email;
 
 class ManagerController extends Controller
 {
-    
-
     public function manager_form()
     {
         return view('admin.manager_form');
@@ -17,9 +14,10 @@ class ManagerController extends Controller
 
     public function manager_list()
     {
-        $users = User::where('usertype', 'manager')->get();
+        $users = User::where('usertype', 'manager')->paginate(8);
         return view('admin.manager_list', compact('users'));
     }
+    
 
     public function manager_create()
     {
@@ -31,6 +29,7 @@ class ManagerController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'contact' => 'required|string|max:16', // Fixed validation rule
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -52,30 +51,21 @@ class ManagerController extends Controller
         return view('admin.manager_edit', compact('user'));
     }
 
-
-
-
-
     public function manager_update(string $email, Request $request)
     {
+        $user = User::where('email', $email)->firstOrFail();
 
         $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, // Exclude current email
         ]);
 
-        $manager = User::findOrFail($email);
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->save();
 
-        $manager->name = $validatedData['name'];
-        $manager->email = $validatedData['email'];
-        $manager->save();
+        return redirect()->route('manager_list')->with('success', 'User updated successfully');
     }
-
-
-
-
-
-
 
     public function manager_delete($email)
     {
@@ -84,4 +74,17 @@ class ManagerController extends Controller
 
         return redirect()->route('manager_list')->with('success', 'User deleted successfully');
     }
+
+    public function loanofficer_list()
+    {
+        return view('admin.loanofficer_list');  
+    }
+
+    public function loan_list()
+    {
+        return view('manager.loan_list');  
+    }
+
+  
+    
 }

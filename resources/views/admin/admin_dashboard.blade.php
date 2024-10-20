@@ -5,65 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <style>
+        .card {
+            background-color: rgb(208, 232, 255);
+            margin-right: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: rgb(175, 203, 254);
+            transform: scale(1.05);
+            z-index: 1;
+        }
     </style>
+
 </head>
 
-<body style="background-color: rgb(237, 245, 255);">
+<body>
     @extends('layouts.app')
 
     @section('content')
         <div class="container">
-            <h2>Admin </h2>
-            <br>
-            <div class="row justify-content-center mt-3">
-                <div class="card col-4" style="background-color: rgb(208, 232, 255);">
-                    <div class="card-header">
-                        Create Managers
-                    </div>
-                    <br>
-                    <div class="card-body">
-                        <p class="card-text">Add new managers to the system.</p>
-                        <a href="{{ url('admin/manager_form') }}" class="btn btn-primary float-end">Create</a>
-                    </div>
-                </div>
-                <div class="col-1"></div>
-                <div class="card col-4" style="background-color: rgb(208, 232, 255);">
-                    <div class="card-header">
-                        Create Loan Officers
-                    </div>
-                    <br>
-                    <div class="card-body">
-                        <p class="card-text">Add new loan officers to the system.</p>
-                        <a href="{{ url('admin/loanofficer_form') }}" class="btn btn-primary float-end">Create</a>
-                    </div>
-                </div>
+            <div class="title-container">
+                <h2><b>Home</b></h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home / </a></li>
+                    </ol>
+                </nav>
             </div>
-            <br>
-            <div class="row justify-content-center mt-5">
-                <div class="card col-4" style="background-color: rgb(208, 232, 255);">
-                    <div class="card-header">
-                        View managers
-                    </div>
-                    <br><br>
-                    <div class="card-body">
-                        <p class="card-text">View users of the system</p>
-                        <a href="{{ url('admin/manager_list') }}" class="btn btn-primary float-end">View</a>
-                    </div>
-                </div>
-                <div class="col-1"></div>
-                <div class="card col-4" style="background-color: rgb(208, 232, 255);">
-                    <div class="card-header">
-                        loan Officer
-                    </div>
-                    <br>
-                    <div class="card-body">
-                        <p class="card-text">view loan officers</p>
-                        <a href="{{ url('admin/loanofficer_list') }}" class="btn btn-primary float-end">view</a>
-                    </div>
-                </div>
-            </div>
+        </div>
+
+        <div class="container text-center"> 
+            <h1><b>Welcome to Admin Module</b></h1>
+            <img src="images/banner.png" class="img-fluid" alt="">
         </div>
     @endsection
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Emi extends Model
+class EMI extends Model
 {
     use HasFactory;
 
@@ -17,3 +17,4 @@ class Emi extends Model
         'emi_amount',
     ];
 }
+

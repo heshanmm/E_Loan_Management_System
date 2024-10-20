@@ -1,12 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container">
+        <div class="title-container">
+            <h2><b>EMI Calculator</b></h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home </a></li>
+                    <li class="breadcrumb-item"><a href="#">EMI Calculator / </a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="customer-form container">
         <div class="row mt-3 justify-content-center">
             <div class="card col-6 mt-5" style="background-color: rgb(206, 228, 255); padding-left:4rem">
+                
                 <form method="POST" action="{{ route('emi.calculate') }}" id="emi-form">
                     @csrf
-                    <h4 class="mt-3">Emi Calculator</h4>
+                    <h4 class="mt-3">EMI Calculator</h4>
 
                     <div class="form-group mt-4">
                         <div class="row">
@@ -67,15 +79,27 @@
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-3 mt-3 d-flex justify-content-center">
+                        <div class="col-5 mt-3 mx-5">
                             <button type="submit" class="btn btn-primary">Calculate EMI</button>
                         </div>
-                        <div class="col-3 mt-3 d-flex justify-content-center">
-                            <button type="button" class="btn btn-danger" onclick="clearForm()">Clear</button>
+                        <div class="col-2 mt-3 d-flex">
+                            <a href="{{ url('emi_calculator') }}" class="btn btn-danger">Clear</a>
                         </div>
-                        <div class="col-3 mt-3 d-flex justify-content-center"> <a
-                                href="#" class="btn btn-primary float-end">Save</a>
-                        </div>
+                        {{-- <div class="col-3 mt-3 d-flex justify-content-center">
+                            @if (isset($emi))
+                                <form method="POST" action="{{ route('emi.store') }}">
+                                    @csrf
+                                    <input type="hidden" name="nic" value="{{ old('nic', $nic ?? '') }}">
+                                    <input type="hidden" name="principal"
+                                        value="{{ old('loan_amount', $loanAmount ?? '') }}">
+                                    <input type="hidden" name="interest_rate"
+                                        value="{{ old('interest_rate', $interestRate ?? '') }}">
+                                    <input type="hidden" name="term"
+                                        value="{{ old('repayments', $repayments ?? '') }}">
+                                    <input type="hidden" name="emi_amount" value="{{ $emi }}">
+                                </form>
+                            @endif
+                        </div> --}}
                     </div>
 
                     @if (isset($emi))
@@ -99,7 +123,7 @@
         </div>
 
         @if (isset($emi))
-            <div class="card mt-5" style="padding: 3rem; background-color: rgb(206, 228, 255);" id="schedule-section ">
+            <div class="card mt-5" style="padding: 3rem; background-color: rgb(206, 228, 255);" id="schedule-section">
                 <h2>Repayment Schedule</h2>
                 <table class="table table-bordered mt-3">
                     <thead>
@@ -143,4 +167,5 @@
             @endif
         }
     </script>
+
 @endsection

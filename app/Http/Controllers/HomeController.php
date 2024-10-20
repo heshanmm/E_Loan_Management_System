@@ -23,9 +23,15 @@ class HomeController extends Controller
         }
     }
 
+    public function admin_home(){
+        return view('admin/admin_dashboard');
+    }
+
 
     public function emi_calculator_view()
     {
         return view('loanofficer.emi_calculator');
     }
+
+
 }

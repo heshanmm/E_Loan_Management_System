@@ -9,11 +9,9 @@ class LoanApplication extends Model
 {
     use HasFactory;
 
-    // Specify the table associated with the model
-    protected $table = 'loan_applications';
+     protected $table = 'loan_applications';
 
-    // Define the attributes that are mass assignable
-    protected $fillable = [
+     protected $fillable = [
         'name',
         'nic',
         'account_no',
@@ -35,7 +33,7 @@ class LoanApplication extends Model
         'loan_type',
         'repayment_method',
         'loan_amount',
+        'status',
     ];
 
-    // Optionally, you can define additional methods or relationships here
-}
+ }

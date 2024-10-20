@@ -1,18 +1,24 @@
 @extends('layouts.app')
-@section('content')
 
+@section('content')
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            </ol>
+        </nav>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Add Managers') }}</div>
+                    <div class="card-header">{{ __('Create User') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('manager_save') }}">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -37,6 +43,23 @@
                                         value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="contact"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Contact Number') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="contact" type="text"
+                                        class="form-control @error('contact') is-invalid @enderror" name="contact"
+                                        value="{{ old('contact') }}" required autocomplete="contact">
+
+                                    @error('contact')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -84,5 +107,4 @@
             </div>
         </div>
     </div>
-
-@stop
+@endsection

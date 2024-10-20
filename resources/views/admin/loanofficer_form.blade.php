@@ -1,7 +1,22 @@
 @extends('layouts.app')
 @section('content')
+    <div class="container">
+        <div class="title-container">
+            <h2><b>Home</b></h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home / </a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
 
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            </ol>
+        </nav>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -12,7 +27,8 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"

@@ -31,6 +31,7 @@ class CreateLoanApplicationsTable extends Migration
             $table->string('loan_type');
             $table->string('repayment_method');
             $table->decimal('loan_amount', 15, 2);
+            $table->string('status')->default('0');
             $table->timestamps();
         });
     }

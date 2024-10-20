@@ -14,8 +14,7 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
-        // Validate incoming request
-        $request->validate([
+         $request->validate([
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -60,10 +59,7 @@ class CustomerController extends Controller
 
         return redirect()->route('customer_list')->with('success', 'New loan officer added successfully');
     }
-
-
-
-
+    
     public function customer_list()
     {
         $customers = Customers::all();
@@ -92,7 +88,6 @@ class CustomerController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validate the request
         $request->validate([
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
